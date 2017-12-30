@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/aboutt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="21dp"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="63dp"
+            android:text="Software : Android Studio V3.0\nOperating System : Windows 10\nAndroid Version : Kitkat and Above\nDatabase Connectivity : Yes\nDatabase Tool : SQLite\nDeveloper : Arun Kumar V 3rd Year/CSE
+Establishment Year: 2018"
+            android:textColor="#ddd"
+            android:textSize="20sp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:id="@+id/dev"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/aboutt"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="18dp"
+            android:text="Developer Bio" />
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

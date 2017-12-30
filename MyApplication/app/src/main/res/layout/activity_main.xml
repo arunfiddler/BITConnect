@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="@drawable/mainbg">
+    <TextView
+        android:id="@+id/opt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="69dp"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textColor="#000000"
+        android:text="Choose Any Of The Options Below" />
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:layout_centerVertical="true">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:gravity="center">
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="150sp"
+                android:layout_height="250sp"
+                android:src="@drawable/staff">
+            </ImageButton>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView3"
+                android:layout_below="@+id/imageButton2"
+                android:layout_centerInParent="true"
+                android:text="Staff Report"
+                android:textColor="#000000"
+                android:textSize="20dp"/>
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginLeft="20dp">
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="150sp"
+                android:layout_height="250sp"
+                android:src="@drawable/camps">
+            </ImageButton>
+            <TextView
+                android:layout_width="wrap_content"
+                android:id="@+id/textView2"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageButton"
+                android:layout_centerInParent="true"
+                android:text="Camps Connect"
+                android:textColor="#000000"
+                android:textSize="20dp">
+            </TextView>
+        </RelativeLayout>
+    </LinearLayout>
+
+
+    </RelativeLayout>
