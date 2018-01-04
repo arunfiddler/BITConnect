@@ -34,6 +34,7 @@
             <ImageButton
                 android:id="@+id/imageButton2"
                 android:layout_width="150sp"
+                android:background="@null"
                 android:layout_height="250sp"
                 android:src="@drawable/staff">
             </ImageButton>
@@ -57,6 +58,7 @@
                 android:id="@+id/imageButton"
                 android:layout_width="150sp"
                 android:layout_height="250sp"
+                android:background="@null"
                 android:src="@drawable/camps">
             </ImageButton>
             <TextView

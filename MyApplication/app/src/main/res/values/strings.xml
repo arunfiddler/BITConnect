@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">BIT Connect</string>
+    <string name="appbar_scrolling_view_behavior">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
+    <string name="msg_no_ticket_found">No ticket found. Try scanning the QR Codes from http://api.androidhive.info/qrcodes/</string>
+    <string name="lbl_genre">Designation</string>
+    <string name="lbl_rating">Phone Number</string>
+    <string name="lbl_price">Mail ID</string>
+    <string name="btn_buy_now">Call Now</string>
+    <string name="lbl_duration">Qualification</string>
 </resources>
