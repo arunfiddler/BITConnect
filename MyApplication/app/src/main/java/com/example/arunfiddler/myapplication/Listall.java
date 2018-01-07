@@ -1,8 +1,5 @@
 package com.example.arunfiddler.myapplication;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,12 +7,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+
 import java.util.ArrayList;
 
 public class Listall extends AppCompatActivity {
-    DBHELPER1 db = null;
+    DBHELPER1 db = new DBHELPER1(this);
     ListView listView = null;
     MyCustomAdapter myCustomAdapter = null;
     ArrayList<Staff> staff = null;
@@ -24,26 +21,20 @@ public class Listall extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listall);
         String dept = getIntent().getExtras().getString("dept");
-        this.db = new DBHELPER1(this);
-        this.staff = this.db.getUsers(dept);
-        this.myCustomAdapter = new MyCustomAdapter(this, R.layout.staff_details, this.staff);
-        this.listView = (ListView) findViewById(R.id.simpleListView);
-        this.listView.setAdapter(this.myCustomAdapter);
-        this.listView.setOnItemClickListener(new OnItemClickListener() {
+        staff = db.getUsers(dept);
+        /*Toast.makeText(getApplicationContext(),"inlistall"+staff.size(),Toast.LENGTH_SHORT).show();*/
+        myCustomAdapter = new MyCustomAdapter(getApplicationContext(), R.layout.staff_details, staff);
+        listView = (ListView) findViewById(R.id.simpleListView);
+        listView.setAdapter(this.myCustomAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Staff stf = (Staff) Listall.this.staff.get(i);
                 Intent intent;
-                if (stf.getDept().equals("SCIENCE AND HUMANTIES")) {
-                    if (!stf.getName().equals("NON-Teaching Staff") && !stf.getName().equals("CHEMISTRY") && !stf.getName().equals("PHYSICS") && !stf.getName().equals("MATHEMATICS") && !stf.getName().equals("ENGLISH")) {
-                        intent = new Intent(Listall.this.getApplicationContext(), Results.class);
-                        intent.putExtra("code", stf.getId());
-                        Listall.this.startActivity(intent);
-                    }
-                } else if (!stf.getName().equals("NON-Teaching Staff")) {
-                    intent = new Intent(Listall.this.getApplicationContext(), Results.class);
-                    intent.putExtra("code", stf.getId());
-                    Listall.this.startActivity(intent);
-                }
+
+                intent = new Intent(Listall.this.getApplicationContext(), Results.class);
+                intent.putExtra("code", stf.getId());
+                Listall.this.startActivity(intent);
+
             }
         });
     }

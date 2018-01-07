@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,15 +12,17 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-
+import java.util.Scanner;
 
 
 public class dept extends AppCompatActivity {
+    DBHELPER1 db = new DBHELPER1(this);
     GridView androidGridView;
     int[] gridViewImageId = new int[]{R.drawable.aero, R.drawable.agri, R.drawable.auto, R.drawable.bt, R.drawable.chem, R.drawable.civil, R.drawable.cse, R.drawable.ece, R.drawable.eee, R.drawable.ei, R.drawable.fashion, R.drawable.food, R.drawable.it, R.drawable.lang, R.drawable.maths, R.drawable.mba, R.drawable.mech, R.drawable.mecht, R.drawable.phy, R.drawable.tex,R.drawable.pet};
     String[] gridViewString = new String[]{"Aeronautical", "Agri", "Auto", "Biotech", "Chemistry", "Civil", "CSE", "ECE", "EEE", "E&I", "Fashion", "Food", "IT", "Language", "Mathematics", "MBA", "Mechanical", "Mechatronics", "Physical Science", "Textile" , "Physical Education"};
@@ -33,17 +34,19 @@ public class dept extends AppCompatActivity {
         setContentView(R.layout.activity_dept);
         if (!getApplicationContext().getDatabasePath(DBHELPER1.DATABASE_NAME).exists()) {
             new DBHELPER1(this).getReadableDatabase();
-            if (copyDatabase(this)) {
-                Toast.makeText(this, "Copy Database Success", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "Copy Database failure", Toast.LENGTH_SHORT).show();
-            }
         }
+        if (copyDatabase(this)) {
+            Toast.makeText(this, "Copy Database Success", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Copy Database failure", Toast.LENGTH_SHORT).show();
+        }
+
         CustomGridViewActivity adapterViewAndroid = new CustomGridViewActivity(this, this.gridViewString, this.gridViewImageId);
         this.androidGridView = (GridView) findViewById(R.id.gridview);
         this.androidGridView.setAdapter(adapterViewAndroid);
         this.androidGridView.setOnItemClickListener(new OnItemClickListener() {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long id) {
+//                Toast.makeText(getApplicationContext(),"in"+dept.this.gridViewdeptString[i],Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(dept.this, Listall.class);
                 intent.putExtra("dept", dept.this.gridViewdeptString[i]);
                 dept.this.startActivity(intent);
@@ -53,28 +56,50 @@ public class dept extends AppCompatActivity {
 
     private boolean copyDatabase(Context context) {
         try {
-            InputStream inputStream = context.getAssets().open(DBHELPER1.DATABASE_NAME);
-            OutputStream outputStream = new FileOutputStream("/data/data/com.example.arunfiddler/databases/staff.sql");
-            byte[] buff = new byte[1024];
-            while (true) {
-                int length = inputStream.read(buff);
-                if (length > 0) {
-                    outputStream.write(buff, 0, length);
-                } else {
-                    outputStream.flush();
-                    outputStream.close();
-                    Log.v("MainActivity ", "DB Copied");
-                    return true;
-                }
+            if(db.checkData()){
+                return false;
             }
-        } catch (FileNotFoundException e) {
+            else{
+            File dbFile = context.getDatabasePath(DBHELPER1.DATABASE_NAME);
+            InputStream inputStream = context.getAssets().open(DBHELPER1.DATABASE_NAME);
+            OutputStream outputStream = new FileOutputStream(dbFile);
+            String line="";
+            //byte[] buff = new byte[1024];
+            /*while (true) {
+                int length = inputStream.read(buff);
+                if (length > 0) {*/
+            //outputStream.write(buff, 0, length);
+            Scanner scanner = new Scanner(inputStream);
+            while (scanner.hasNextLine())
+
+            {
+                line = scanner.nextLine();
+                System.out.println(" " + line);
+                db.insertUser(line);
+                // use line here
+            }}
+
+
+
+
+               /* } else {
+                    *//*outputStream.flush();
+                    outputStream.close();*//*
+                    Log.v("deptDB ", "DB Copied");
+                    return true;
+                }*/
+
+
+        }catch(FileNotFoundException e){
             e.printStackTrace();
             return false;
-        } catch (IOException e) {
+        } catch(IOException e){
             e.printStackTrace();
             return false;
         }
+        return true;
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

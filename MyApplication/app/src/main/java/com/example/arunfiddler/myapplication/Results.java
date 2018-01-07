@@ -1,11 +1,8 @@
 package com.example.arunfiddler.myapplication;
-
-import android.annotation.SuppressLint;
-import android.content.Intent;
+        import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,111 +27,97 @@ public class Results extends AppCompatActivity {
     private TextView txtPrice;
     private TextView txtRating;
 
-    @SuppressLint("WrongConstant")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
-        this.txtName = (TextView) findViewById(R.id.name);
-        this.txtDirector = (TextView) findViewById(R.id.director);
-        this.txtDuration = (TextView) findViewById(R.id.duration);
-        this.txtPrice = (TextView) findViewById(R.id.price);
-        this.txtRating = (TextView) findViewById(R.id.rating);
-        this.imgPoster = (ImageView) findViewById(R.id.poster);
-        this.txtGenre = (TextView) findViewById(R.id.genre);
-        this.btnBuy = (Button) findViewById(R.id.btn_buy);
-        this.imgPoster = (ImageView) findViewById(R.id.poster);
-        this.txtError = (TextView) findViewById(R.id.txt_error);
-        this.ticketView = (TicketView) findViewById(R.id.layout_ticket);
-        this.progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        this.btnsms = (Button) findViewById(R.id.btn_sms);
-        String barcode = getIntent().getStringExtra("code");
-        if (TextUtils.isEmpty(barcode)) {
-            Toast.makeText(getApplicationContext(), "Barcode is empty!", 1).show();
-            finish();
-        }
-        searchBarcode(barcode);
-    }
-
-    private void searchBarcode(String barcode) {
-        setresult(new DBHELPER1(this).getStaff(barcode));
+        txtName = (TextView) findViewById(R.id.name);
+        txtDirector = (TextView) findViewById(R.id.director);
+        txtDuration = (TextView) findViewById(R.id.duration);
+        txtPrice = (TextView) findViewById(R.id.price);
+        txtRating = (TextView) findViewById(R.id.rating);
+        imgPoster = (ImageView) findViewById(R.id.poster);
+        txtGenre = (TextView) findViewById(R.id.genre);
+        btnBuy = (Button) findViewById(R.id.btn_buy);
+        imgPoster = (ImageView) findViewById(R.id.poster);
+        txtError = (TextView) findViewById(R.id.txt_error);
+        ticketView = (TicketView) findViewById(R.id.layout_ticket);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        btnsms = (Button) findViewById(R.id.btn_sms);
     }
 
     private void showNoTicket() {
-        this.txtError.setVisibility(View.INVISIBLE);
-        this.ticketView.setVisibility(View.VISIBLE);
-        this.progressBar.setVisibility(View.INVISIBLE);
+        txtError.setVisibility(View.VISIBLE);
+        ticketView.setVisibility(View.GONE);
+        progressBar.setVisibility(View.GONE);
     }
 
-    @SuppressLint("WrongConstant")
     private void setresult(final Staff s) {
         if (s != null) {
             try {
-                this.txtName.setText(s.getName());
-                this.txtDirector.setText("Department Of " + s.getDept());
-                this.txtDuration.setText(s.getQfn());
-                this.txtGenre.setText(s.getDsn());
-                this.txtRating.setText(s.getPhno());
-                this.imgPoster.setImageResource(R.drawable.nt);
-                this.btnsms.setOnClickListener(new OnClickListener() {
-                    @SuppressLint("WrongConstant")
+                txtName.setText(s.getName());
+                txtDirector.setText("Department Of " + s.getDept());
+                txtDuration.setText(s.getQfn());
+                txtGenre.setText(s.getDsn());
+                txtRating.setText(s.getPhno());
+                txtPrice.setText(s.getMail());
+                imgPoster.setImageResource(R.drawable.nt);
+                btnsms.setOnClickListener(new OnClickListener() {
                     public void onClick(View view) {
                         if (s.getPhno() == null) {
-                            Toast.makeText(Results.this.getApplicationContext(), "There is No Phone Number You Cant Call OR SMS", 1).show();
+                            Toast.makeText(Results.this.getApplicationContext(), "There is No Phone Number You Cant Call OR SMS", Toast.LENGTH_LONG).show();
                         } else {
                             new Dialog().showdialog(s.getName(), s.getPhno(), Results.this);
                         }
                     }
                 });
-                this.btnBuy.setText(getString(R.string.btn_buy_now));
-                this.btnBuy.setOnClickListener(new OnClickListener() {
-                    @SuppressLint("WrongConstant")
+                btnBuy.setText(getString(R.string.btn_buy_now));
+                btnBuy.setOnClickListener(new OnClickListener() {
                     public void onClick(View view) {
                         if (s.getPhno() == null) {
-                            Toast.makeText(Results.this.getApplicationContext(), "There is No Phone Number You Cant Call OR SMS", 1).show();
+                            Toast.makeText(Results.this.getApplicationContext(), "There is No Phone Number You Cant Call OR SMS", Toast.LENGTH_LONG).show();
                         } else {
                             new Dialog().showdialog(s.getName(), s.getPhno(), Results.this);
                         }
                     }
                 });
-                this.btnBuy.setTextColor(ContextCompat.getColor(this, R.color.colorPrimary));
-                this.ticketView.setVisibility(View.INVISIBLE);
-                this.progressBar.setVisibility(View.VISIBLE);
+                btnBuy.setTextColor(ContextCompat.getColor(this, R.color.colorPrimary));
+                ticketView.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.GONE);
                 return;
             } catch (Exception e) {
-                showNoTicket();
-                Toast.makeText(getApplicationContext(), "Error occurred. Check your LogCat for full report", 0).show();
+                /*showNoTicket();*/
+                Toast.makeText(getApplicationContext(), "Error occurred. Check your LogCat for full report", Toast.LENGTH_SHORT).show();
                 return;
             }
         }
-        showNoTicket();
+        /*showNoTicket();*/
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu,menu);
+        getMenuInflater().inflate(R.menu.menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id==R.id.Aboutmenu)
-        {   Intent i2 = new Intent(this, developer.class);
+        if (id == R.id.Aboutmenu) {
+            Intent i2 = new Intent(this, developer.class);
             startActivity(i2);
             return true;
 
         }
-        if (id==R.id.campsmenu)
-        {   Intent intent = new Intent(this, Camps.class);
+        if (id == R.id.campsmenu) {
+            Intent intent = new Intent(this, Camps.class);
             startActivity(intent);
             return true;
         }
-        if (id==R.id.staffmenu)
-        {   Intent i3 = new Intent(this, dept.class);
+        if (id == R.id.staffmenu) {
+            Intent i3 = new Intent(this, dept.class);
             startActivity(i3);
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

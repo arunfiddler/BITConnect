@@ -41,7 +41,7 @@ public class Staff {
     }
 
     public void setDept(String dept) {
-        this.dept = dept;
+        dept = dept;
     }
 
     public String getDsn() {

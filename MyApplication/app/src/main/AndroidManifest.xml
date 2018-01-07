@@ -56,7 +56,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Listall" />
-        <activity android:name=".Results"></activity>
+        <activity android:name=".Results" />
+        <activity android:name=".TicketResultActivity"></activity>
     </application>
 
 </manifest>
