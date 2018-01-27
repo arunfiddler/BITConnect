@@ -20,8 +20,7 @@
             android:layout_marginLeft="21dp"
             android:layout_marginStart="21dp"
             android:layout_marginTop="63dp"
-            android:text="Software : Android Studio V3.0\nOperating System : Windows 10\nAndroid Version : Kitkat and Above\nDatabase Connectivity : Yes\nDatabase Tool : SQLite\nDeveloper : Arun Kumar V 3rd Year/CSE
-Establishment Year: 2018"
+            android:text="Software : Android Studio V3.0\nOperating System : Windows 10\nAndroid Version : Kitkat and Above\nDatabase Connectivity : Yes\nDatabase Tool : SQLite\nDeveloper : Arun Kumar V \n                 3rd Year/CSE\nVersion : 1.0\nEstablishment Year : 2018"
             android:textColor="#ddd"
             android:textSize="20sp" />
 

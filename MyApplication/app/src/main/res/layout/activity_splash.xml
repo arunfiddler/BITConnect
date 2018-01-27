@@ -4,21 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/splashbg"
-    tools:context="com.example.arunfiddler.myapplication.Splash">
+    android:background="#222222"
+    tools:context="com.arunfiddler.sdc.myapplication.Splash">
 
-    <TextView
-        android:id="@+id/tv1"
+    <ImageView
+        android:id="@+id/load"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/tv2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="131dp"
-        android:gravity="center"
-        android:text="BIT CONNECT"
-        android:textColor="#ddd"
-        android:textSize="55sp" />
+        android:layout_marginBottom="113dp"
+        app:srcCompat="@drawable/lo" />
 
     <TextView
         android:id="@+id/tv2"
@@ -26,19 +23,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="78dp"
-        android:textColor="#ddd"
-        android:textSize="25sp"
-        android:text="Crafted by ArunFiddler" />
+        android:layout_marginBottom="20dp"
+        android:text="Crafted by ArunFiddler"
+        android:textColor="#ffffff"
+        android:textSize="15sp" />
 
-    <ImageView
-        android:id="@+id/load"
-        android:layout_width="100sp"
-        android:layout_height="100sp"
-
-        android:layout_below="@+id/tv1"
-
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="68dp"
-        app:srcCompat="@drawable/lo" />
 </RelativeLayout>

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.arunfiddler.myapplication">
+    package="com.arunfiddler.sdc.myapplication">
 
     <uses-sdk
-        android:maxSdkVersion="15"
+        android:minSdkVersion="15"
+        android:maxSdkVersion="27"
         android:targetSdkVersion="26" />
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -16,13 +17,13 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Splash"
+            android:name="com.arunfiddler.sdc.myapplication.Splash"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
@@ -32,32 +33,31 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.arunfiddler.sdc.myapplication.MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Camps"
+            android:name="com.arunfiddler.sdc.myapplication.Camps"
             android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="com.example.arunfiddler.myapplication.Camps" />
+                <action android:name="com.arunfiddler.sdc.myapplication.Camps" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".developer"
+            android:name="com.arunfiddler.sdc.myapplication.developer"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".dept"
+            android:name="com.arunfiddler.sdc.myapplication.dept"
             android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="com.example.arunfiddler.myapplication.dept" />
+                <action android:name="com.arunfiddler.sdc.myapplication.dept" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".Listall" />
-        <activity android:name=".Results" />
-        <activity android:name=".TicketResultActivity"></activity>
-    </application>
+        <activity android:name="com.arunfiddler.sdc.myapplication.Listall" />
+        <activity android:name="com.arunfiddler.sdc.myapplication.Results" />
+        </application>
 
 </manifest>
